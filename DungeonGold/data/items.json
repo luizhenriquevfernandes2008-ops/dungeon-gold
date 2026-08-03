@@ -1,0 +1,159 @@
+{
+  "_comentario": "efeito.tipo: vidaMax, dano, velocidade, armadura, cadencia, alcance, cura, ouro, roubo, critico. 'base': true = já vem liberado na primeira run.",
+  "itens": [
+    { "id": "pocao_menor", "nome": "Poção Menor", "sprite": "pocao", "raridade": "comum", "peso": 26, "base": true,
+      "descricao": "Restaura 30 de vida na hora.", "efeito": { "tipo": "cura", "valor": 30 }, "consumivel": true },
+
+    { "id": "bolsa_ouro", "nome": "Bolsa de Ouro", "sprite": "ouro", "raridade": "comum", "peso": 22, "base": true,
+      "descricao": "Ouro para o cofre entre as runs.", "efeito": { "tipo": "ouro", "valor": 25 }, "consumivel": true },
+
+    { "id": "coracao_pedra", "nome": "Coração de Pedra", "sprite": "coracao", "raridade": "comum", "peso": 16, "base": true,
+      "descricao": "+20 de vida máxima.", "efeito": { "tipo": "vidaMax", "valor": 20 } },
+
+    { "id": "fio_afiado", "nome": "Fio Afiado", "sprite": "espada", "raridade": "comum", "peso": 16, "base": true,
+      "descricao": "+4 de dano da espada.", "efeito": { "tipo": "dano", "valor": 4 } },
+
+    { "id": "broquel", "nome": "Broquel de Ferro", "sprite": "escudo", "raridade": "comum", "peso": 14, "base": true,
+      "descricao": "+12% de armadura.", "efeito": { "tipo": "armadura", "valor": 0.12 } },
+
+    { "id": "botas_couro", "nome": "Botas Gastas", "sprite": "reliquia", "raridade": "comum", "peso": 12, "base": true,
+      "descricao": "+12% de velocidade.", "efeito": { "tipo": "velocidade", "valor": 0.12 } },
+
+    { "id": "punho_rapido", "nome": "Punho Rápido", "sprite": "espada", "raridade": "raro", "peso": 9,
+      "descricao": "+22% de velocidade de ataque.", "efeito": { "tipo": "cadencia", "valor": 0.22 } },
+
+    { "id": "lamina_longa", "nome": "Lâmina Longa", "sprite": "espada", "raridade": "raro", "peso": 9,
+      "descricao": "+0.8 de alcance do golpe.", "efeito": { "tipo": "alcance", "valor": 0.8 } },
+
+    { "id": "sanguessuga", "nome": "Anel Sanguessuga", "sprite": "reliquia", "raridade": "raro", "peso": 7,
+      "descricao": "Recupera 12% do dano causado.", "efeito": { "tipo": "roubo", "valor": 0.12 } },
+
+    { "id": "olho_falcao", "nome": "Olho de Falcão", "sprite": "reliquia", "raridade": "raro", "peso": 7,
+      "descricao": "+15% de chance de golpe crítico.", "efeito": { "tipo": "critico", "valor": 0.15 } },
+
+    { "id": "elmo_martir", "nome": "Elmo do Mártir", "sprite": "escudo", "raridade": "epico", "peso": 5,
+      "descricao": "+25% de armadura e +25 de vida máxima.", "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "armadura", "valor": 0.25 }, { "tipo": "vidaMax", "valor": 25 } ] } },
+
+    { "id": "chama_eterna", "nome": "Chama Eterna", "sprite": "pocao", "raridade": "epico", "peso": 5,
+      "descricao": "+10 de dano e o golpe queima o alvo.", "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dano", "valor": 10 }, { "tipo": "queimar", "valor": 1 } ] } },
+
+    { "id": "coroa_gold", "nome": "Coroa de Dungeon Gold", "sprite": "ouro", "raridade": "lendario", "peso": 2,
+      "descricao": "Todo ouro coletado vale o dobro.", "efeito": { "tipo": "ouroDobro", "valor": 2 } },
+
+    { "id": "espelho_negro", "nome": "Espelho Negro", "sprite": "reliquia", "raridade": "lendario", "peso": 2,
+      "descricao": "Bloqueio perfeito devolve o dano ao inimigo.", "efeito": { "tipo": "reflexo", "valor": 1.5 } },
+
+    { "id": "pedra_amolar", "nome": "Pedra de Amolar", "sprite": "espada", "raridade": "comum", "peso": 15, "base": true,
+      "descricao": "+7 de dano. Simples assim.", "efeito": { "tipo": "dano", "valor": 7 } },
+
+    { "id": "braco_longo", "nome": "Braço do Enforcado", "sprite": "reliquia", "raridade": "comum", "peso": 13, "base": true,
+      "descricao": "+1.2 de alcance. O golpe chega antes de você.", "efeito": { "tipo": "alcance", "valor": 1.2 } },
+
+    { "id": "dente_lobo", "nome": "Dente de Lobo", "sprite": "espada", "raridade": "raro", "peso": 9, "base": true,
+      "descricao": "+12 de dano, mas -8% de velocidade. Peso tem preço.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dano", "valor": 12 }, { "tipo": "velocidade", "valor": -0.08 } ] } },
+
+    { "id": "lente_bruxa", "nome": "Lente da Bruxa", "sprite": "reliquia", "raridade": "raro", "peso": 8, "base": true,
+      "descricao": "+2.0 de alcance e +10% de crítico. Você enxerga onde bater.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "alcance", "valor": 2.0 }, { "tipo": "critico", "valor": 0.10 } ] } },
+
+    { "id": "manopla_ferro", "nome": "Manopla de Ferro", "sprite": "escudo", "raridade": "raro", "peso": 8, "base": true,
+      "descricao": "+9 de dano e +15% de armadura.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dano", "valor": 9 }, { "tipo": "armadura", "valor": 0.15 } ] } },
+
+    { "id": "coracao_forja", "nome": "Coração da Forja", "sprite": "pocao", "raridade": "epico", "peso": 5, "base": true,
+      "descricao": "+18 de dano e +30% de cadência. Você bate mais e mais rápido.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dano", "valor": 18 }, { "tipo": "cadencia", "valor": 0.30 } ] } },
+
+    { "id": "lamina_infinita", "nome": "Lâmina que Não Acaba", "sprite": "espada", "raridade": "epico", "peso": 4, "base": true,
+      "descricao": "+3.2 de alcance e +12 de dano. O golpe atravessa a sala.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "alcance", "valor": 3.2 }, { "tipo": "dano", "valor": 12 } ] } },
+
+    { "id": "esporas", "nome": "Esporas Quebradas", "sprite": "reliquia", "raridade": "comum", "peso": 12, "base": true,
+      "descricao": "+1 carga de dash.", "efeito": { "tipo": "dashCargas", "valor": 1 } },
+
+    { "id": "pena_corvo", "nome": "Pena de Corvo", "sprite": "reliquia", "raridade": "raro", "peso": 8, "base": true,
+      "descricao": "Dash recarrega 35% mais rápido e +10% de velocidade.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dashRecarga", "valor": 0.35 }, { "tipo": "velocidade", "valor": 0.10 } ] } },
+
+    { "id": "botas_vento", "nome": "Botas do Vento Sujo", "sprite": "reliquia", "raridade": "epico", "peso": 5, "base": true,
+      "descricao": "+2 cargas de dash e +18% de velocidade.",
+      "efeito": { "tipo": "composto", "partes": [
+        { "tipo": "dashCargas", "valor": 2 }, { "tipo": "velocidade", "valor": 0.18 } ] } },
+
+    { "id": "esp_bola_fogo", "nome": "Semente de Chama", "sprite": "pocao", "raridade": "raro", "peso": 7, "base": true,
+      "especial": "bolaFogo",
+      "descricao": "F solta uma bola de fogo que atravessa inimigos.",
+      "efeito": { "tipo": "especial", "valor": "bolaFogo" } },
+
+    { "id": "esp_estilhaco", "nome": "Punhado de Estilhaços", "sprite": "espada", "raridade": "raro", "peso": 7, "base": true,
+      "especial": "estilhaco",
+      "descricao": "F cospe oito lascas em leque, bem à queima-roupa.",
+      "efeito": { "tipo": "especial", "valor": "estilhaco" } },
+
+    { "id": "esp_repulsa", "nome": "Sino Rachado", "sprite": "escudo", "raridade": "raro", "peso": 6, "base": true,
+      "especial": "repulsa",
+      "descricao": "F solta uma onda que fere e atordoa tudo em volta.",
+      "efeito": { "tipo": "especial", "valor": "repulsa" } },
+
+    { "id": "esp_piscar", "nome": "Olho de Vidro", "sprite": "reliquia", "raridade": "epico", "peso": 4, "base": true,
+      "especial": "piscar",
+      "descricao": "F te arremessa para frente atravessando tudo, e queima quem ficou no caminho.",
+      "efeito": { "tipo": "especial", "valor": "piscar" } },
+
+    { "id": "esp_sanguessuga", "nome": "Prego do Carrasco", "sprite": "reliquia", "raridade": "epico", "peso": 4, "base": true,
+      "especial": "drenar",
+      "descricao": "F crava no inimigo mais próximo e transfere a vida dele para você.",
+      "efeito": { "tipo": "especial", "valor": "drenar" } },
+
+    { "id": "esp_tempestade", "nome": "Nuvem Engarrafada", "sprite": "pocao", "raridade": "lendario", "peso": 2, "base": true,
+      "especial": "tempestade",
+      "descricao": "F chama uma tempestade que castiga a sala inteira por três segundos.",
+      "efeito": { "tipo": "especial", "valor": "tempestade" } },
+
+    { "id": "fruta_furia", "nome": "Fruta da Fúria", "sprite": "pocao", "raridade": "raro", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "Dano em dobro por 25 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 25, "partes": [ { "tipo": "danoMult", "valor": 2.0 } ] } },
+
+    { "id": "fruta_lebre", "nome": "Fruta da Lebre", "sprite": "pocao", "raridade": "raro", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "+70% de velocidade e +1 carga de dash por 25 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 25, "partes": [
+        { "tipo": "velocidade", "valor": 0.70 }, { "tipo": "dashCargas", "valor": 1 } ] } },
+
+    { "id": "fruta_ferro", "nome": "Fruta de Ferro", "sprite": "pocao", "raridade": "raro", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "+45% de armadura por 30 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 30, "partes": [ { "tipo": "armadura", "valor": 0.45 } ] } },
+
+    { "id": "fruta_relogio", "nome": "Fruta do Relógio", "sprite": "pocao", "raridade": "raro", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "+80% de cadência por 20 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 20, "partes": [ { "tipo": "cadencia", "valor": 0.80 } ] } },
+
+    { "id": "fruta_alcance", "nome": "Fruta do Braço Longo", "sprite": "pocao", "raridade": "raro", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "+3.5 de alcance por 25 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 25, "partes": [ { "tipo": "alcance", "valor": 3.5 } ] } },
+
+    { "id": "fruta_sangue", "nome": "Fruta de Sangue", "sprite": "pocao", "raridade": "epico", "peso": 0, "base": true,
+      "fruta": true, "consumivel": true,
+      "descricao": "Rouba 40% do dano causado por 20 segundos.",
+      "efeito": { "tipo": "temporario", "duracao": 20, "partes": [ { "tipo": "roubo", "valor": 0.40 } ] } }
+  ],
+  "raridades": {
+    "comum":    { "cor": "#B6A894", "brilho": 0.0 },
+    "raro":     { "cor": "#6AA8E0", "brilho": 0.4 },
+    "epico":    { "cor": "#B07AE0", "brilho": 0.7 },
+    "lendario": { "cor": "#E3B23C", "brilho": 1.0 }
+  }
+}

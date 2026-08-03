@@ -1,0 +1,194 @@
+{
+  "_comentario": "Arquétipos base. As variantes procedurais sorteiam desvios sobre estes valores e recebem um afixo opcional (ver js/gfx/sprites.js).",
+  "arquetipos": [
+    {
+      "id": "esqueleto",
+      "nome": "Esqueleto",
+      "sprite": "esqueleto",
+      "vida": 26,
+      "dano": 7,
+      "velocidade": 2.0,
+      "alcance": 2.0,
+      "cadencia": 1.15,
+      "ouro": 6,
+      "escala": 1.0,
+      "andarMin": 1,
+      "peso": 30,
+      "grito": "enemyAlert",
+      "animacao": "marcha"
+    },
+    {
+      "id": "goblin",
+      "nome": "Goblin",
+      "sprite": "goblin",
+      "vida": 18,
+      "dano": 5,
+      "velocidade": 2.9,
+      "alcance": 1.8,
+      "cadencia": 1.5,
+      "ouro": 5,
+      "escala": 0.85,
+      "andarMin": 1,
+      "peso": 28,
+      "grito": "enemyAlert",
+      "animacao": "saltitante"
+    },
+    {
+      "id": "morcego",
+      "nome": "Morcego da Cripta",
+      "sprite": "morcego",
+      "vida": 12,
+      "dano": 4,
+      "velocidade": 3.8,
+      "alcance": 1.6,
+      "cadencia": 1.9,
+      "ouro": 4,
+      "escala": 0.7,
+      "andarMin": 1,
+      "peso": 20,
+      "voa": true,
+      "erratico": 0.6,
+      "grito": "enemyAlert",
+      "animacao": "esvoacante"
+    },
+    {
+      "id": "limo",
+      "nome": "Limo Ácido",
+      "sprite": "limo",
+      "vida": 40,
+      "dano": 9,
+      "velocidade": 1.3,
+      "alcance": 1.9,
+      "cadencia": 0.8,
+      "ouro": 8,
+      "escala": 0.9,
+      "andarMin": 2,
+      "peso": 16,
+      "grito": "enemyAlert",
+      "animacao": "gosmento"
+    },
+    {
+      "id": "cavaleiro",
+      "nome": "Cavaleiro Caído",
+      "sprite": "cavaleiro",
+      "vida": 62,
+      "dano": 14,
+      "velocidade": 1.9,
+      "alcance": 2.3,
+      "cadencia": 0.85,
+      "ouro": 16,
+      "escala": 1.12,
+      "andarMin": 3,
+      "peso": 14,
+      "armadura": 0.2,
+      "grito": "enemyAlert",
+      "animacao": "pesado"
+    }
+  ],
+  "chefes": [
+    {
+      "id": "guardiao",
+      "nome": "Guardião do Ouro",
+      "sprite": "cavaleiro",
+      "vida": 220,
+      "dano": 20,
+      "velocidade": 2.1,
+      "alcance": 2.6,
+      "cadencia": 1.0,
+      "ouro": 120,
+      "escala": 1.9,
+      "armadura": 0.3,
+      "chefe": true,
+      "animacao": "pesado"
+    },
+    {
+      "id": "matriarca",
+      "nome": "Matriarca Pútrida",
+      "sprite": "limo",
+      "vida": 300,
+      "dano": 24,
+      "velocidade": 1.5,
+      "alcance": 2.4,
+      "cadencia": 0.75,
+      "ouro": 160,
+      "escala": 2.2,
+      "chefe": true,
+      "animacao": "gosmento"
+    }
+  ],
+  "_comentario_afixos": "Afixos: modificadores sorteados por inimigo. 'peso' e a chance relativa; 'tinta' repinta a paleta do sprite (a=corpo, b=sombra, c=detalhe, e=realce); 'luz' e a cor da luz que ele emite, em hexadecimal como texto ('0xRRGGBB' ou '#RRGGBB'). Os demais campos multiplicam os atributos base.",
+  "afixos": [
+    {
+      "id": "nenhum",
+      "nome": "",
+      "peso": 62,
+      "tinta": null,
+      "luz": null
+    },
+    {
+      "id": "flamejante",
+      "nome": "Flamejante",
+      "peso": 10,
+      "tinta": {
+        "a": "#E06A2A",
+        "b": "#A03A14",
+        "e": "#FFE08A"
+      },
+      "luz": "0xFF7A28",
+      "dano": 1.35,
+      "vida": 0.9
+    },
+    {
+      "id": "congelado",
+      "nome": "Congelado",
+      "peso": 10,
+      "tinta": {
+        "a": "#8AC8E0",
+        "b": "#4A8AA8",
+        "e": "#EAFBFF"
+      },
+      "luz": "0x7AC8FF",
+      "velocidade": 0.7,
+      "vida": 1.35
+    },
+    {
+      "id": "venenoso",
+      "nome": "Venenoso",
+      "peso": 9,
+      "tinta": {
+        "a": "#8AD04A",
+        "b": "#527E22",
+        "e": "#DFFF8A"
+      },
+      "luz": "0x8AD04A",
+      "veneno": true
+    },
+    {
+      "id": "blindado",
+      "nome": "Blindado",
+      "peso": 6,
+      "tinta": {
+        "a": "#8A8E9A",
+        "b": "#585E6A",
+        "c": "#3A3E48"
+      },
+      "armadura": 0.45,
+      "velocidade": 0.85
+    },
+    {
+      "id": "espectral",
+      "nome": "Espectral",
+      "peso": 3,
+      "tinta": {
+        "a": "#9AA8FF",
+        "b": "#5A66C8",
+        "e": "#EAF0FF"
+      },
+      "luz": "0x8A9AFF",
+      "transparente": true,
+      "velocidade": 1.3,
+      "vida": 0.7
+    }
+  ],
+  "_comentario_animacao": "Cada arquetipo tem um jeito PROPRIO de se mover: marcha (passo rigido de esqueleto), saltitante (goblin pula), esvoacante (morcego oscila e gira), gosmento (limo se achata e estica), pesado (cavaleiro balanca o corpo inteiro e demora). Antes todos usavam a mesma troca de dois quadros e por isso pareciam o mesmo bicho repintado."
+}

@@ -1,0 +1,48 @@
+/* ==========================================================
+   HUD — barra inferior, réplica da estrutura do DOOM.
+   O canvas é desenhado em 320x32 e escalado com NEAREST,
+   então cada pixel do desenho vira um bloco na tela.
+   ========================================================== */
+#hud{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:22;
+  pointer-events:none;
+  display:flex;
+  justify-content:center;
+  background:#000;
+}
+#hud-canvas{
+  width:100%;
+  max-width:100vw;
+  height:auto;
+  display:block;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+
+
+/* ---------- minimapa ----------
+   Placa de bronze pendurada no alto: moldura escura, fundo quase
+   preto, pixels inteiros. O número do andar fica gravado na borda,
+   como numa placa de porta. */
+#minimap-wrap{
+  position:fixed; top:10px; left:50%; transform:translateX(-50%);
+  padding:5px 5px 4px;
+  background:linear-gradient(180deg,#3A342C,#221E19);
+  border:1px solid #0C0A08;
+  box-shadow:
+    inset 0 0 0 1px rgba(216,203,176,.14),
+    0 4px 14px rgba(0,0,0,.7);
+  z-index:20; pointer-events:none;
+}
+#minimap{
+  display:block; image-rendering:pixelated;
+  opacity:.94;
+}
+#minimap-wrap .mm-andar{
+  display:block; text-align:center;
+  margin-top:3px;
+  font-size:9px; letter-spacing:.20em; text-transform:uppercase;
+  color:#E3B23C; text-shadow:0 1px 0 #0C0A08;
+}

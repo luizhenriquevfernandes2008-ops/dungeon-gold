@@ -1,0 +1,267 @@
+/* ============================================================
+   Barra do chefe e tela de vitória.
+
+   A barra fica no ALTO e ocupa quase a largura da tela — ela precisa
+   ser a coisa mais importante do quadro enquanto a luta dura. Duas
+   camadas: a vermelha é a vida atual, a clara atrás desce depois, com
+   atraso, mostrando o quanto você acabou de arrancar. É esse atraso
+   que faz um golpe grande PARECER grande.
+
+   Os riscos verticais marcam onde ele muda de fase, para o jogador
+   saber que falta pouco para a luta virar.
+   ============================================================ */
+
+#bosshp{
+  position:fixed; top:14px; left:50%; transform:translateX(-50%);
+  width:min(720px, 76vw);
+  z-index:24; pointer-events:none;
+  text-align:center;
+}
+
+.boss-nome{
+  font-family:Cinzel, serif; font-weight:900;
+  font-size:clamp(14px, 2vw, 21px);
+  letter-spacing:.20em; text-transform:uppercase;
+  color:#E8D8B0;
+  text-shadow:0 2px 0 #14100A, 0 0 20px rgba(196,50,42,.65);
+  margin-bottom:6px;
+}
+
+.boss-trilho{
+  position:relative; height:15px;
+  background:#0C0A08;
+  border:1px solid #4A3020;
+  box-shadow:
+    inset 0 2px 7px rgba(0,0,0,.9),
+    0 0 0 1px #100C08,
+    0 3px 16px rgba(0,0,0,.7);
+  overflow:hidden;
+}
+
+/* camada de atraso: mostra o pedaço recém-arrancado */
+.boss-trilho .boss-atraso{
+  position:absolute; inset:0 auto 0 0;
+  width:100%;
+  background:linear-gradient(180deg,#E8C08A,#B08040);
+  transition:width .45s cubic-bezier(.2,.8,.3,1) .12s;
+}
+.boss-trilho .boss-fill{
+  position:absolute; inset:0 auto 0 0;
+  width:100%;
+  background:linear-gradient(180deg,#E8564A,#8A1410);
+  box-shadow:0 0 14px rgba(232,86,74,.55);
+  transition:width .10s linear;
+}
+
+/* riscos das viradas de fase */
+.boss-fases{
+  position:relative; height:0;
+}
+.boss-fases i{
+  position:absolute; top:-16px;
+  width:2px; height:17px;
+  background:#14100A;
+  box-shadow:0 0 0 1px rgba(232,216,176,.22);
+}
+
+/* fase 3: a barra inteira pulsa */
+#bosshp.enfurecido .boss-nome{ color:#FF9A6A; }
+#bosshp.enfurecido .boss-trilho{
+  border-color:#C4322A;
+  animation:bossPulso .7s ease-in-out infinite;
+}
+@keyframes bossPulso{
+  0%,100%{ box-shadow:inset 0 2px 7px rgba(0,0,0,.9), 0 0 0 1px #100C08, 0 0 18px rgba(196,50,42,.5); }
+  50%    { box-shadow:inset 0 2px 7px rgba(0,0,0,.9), 0 0 0 1px #C4322A, 0 0 34px rgba(255,90,60,.85); }
+}
+
+/* ---------- cargas de dash ----------
+   Logo abaixo da mira, onde o olho já está. Carga cheia acende; carga
+   gasta fica um traço apagado, e a que está voltando enche da esquerda
+   para a direita — dá para saber se vale gastar sem tirar o olho do
+   inimigo. */
+#dash{
+  position:fixed; left:50%; top:calc(50% + 26px);
+  transform:translateX(-50%);
+  display:flex; gap:5px;
+  z-index:21; pointer-events:none;
+}
+#dash i{
+  display:block; width:22px; height:4px;
+  background:#1A1610;
+  box-shadow:inset 0 0 0 1px rgba(216,203,176,.20);
+  position:relative; overflow:hidden;
+}
+#dash i.cheia{
+  background:linear-gradient(180deg,#FFE28A,#C89A2E);
+  box-shadow:0 0 8px rgba(227,178,60,.6);
+}
+#dash i b{
+  position:absolute; inset:0 auto 0 0;
+  background:rgba(227,178,60,.45);
+}
+
+/* ---------- habilidade especial (F) ----------
+   Canto inferior esquerdo, acima da HUD. Enquanto recarrega fica
+   apagada e a barrinha enche; pronta, acende dourada. */
+#especial{
+  position:fixed; left:18px; bottom:calc(10vw + 14px);
+  z-index:21; pointer-events:none;
+  display:flex; flex-direction:column; gap:4px;
+  min-width:132px;
+}
+#especial b{
+  font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  color:#6E6559; font-weight:400;
+  text-shadow:0 1px 0 #000;
+}
+#especial i{
+  display:block; height:5px; width:100%;
+  background:#1A1610;
+  box-shadow:inset 0 0 0 1px rgba(216,203,176,.18);
+  position:relative; overflow:hidden;
+}
+#especial i::after{
+  content:''; position:absolute; inset:0 auto 0 0;
+  width:var(--p, 0%);
+  background:linear-gradient(180deg,#8A7A50,#5A4A28);
+}
+#especial.pronto b{ color:var(--ouro-alto); }
+#especial.pronto i::after{
+  width:100%;
+  background:linear-gradient(180deg,#FFE28A,#C89A2E);
+  box-shadow:0 0 10px rgba(227,178,60,.7);
+}
+
+/* ---------- frutas ativas ---------- */
+#buffs{
+  position:fixed; right:18px; bottom:calc(10vw + 14px);
+  z-index:21; pointer-events:none;
+  display:flex; flex-direction:column; gap:4px; align-items:flex-end;
+}
+#buffs span{
+  font-size:10px; letter-spacing:.10em; text-transform:uppercase;
+  color:#C8F06A; background:rgba(16,20,10,.78);
+  border:1px solid #3A4A22; padding:3px 7px;
+  text-shadow:0 1px 0 #000;
+}
+#buffs span.acabando{ color:#E8A75A; border-color:#5A3A18; animation:buffPisca .5s steps(2) infinite; }
+@keyframes buffPisca{ 50%{ opacity:.35; } }
+
+/* ---------- apresentação do chefe ----------
+   Entra escuro, o bicho aparece de baixo para cima e o nome se assenta
+   depois. A pausa aqui é o ponto: o jogador precisa de um segundo para
+   olhar a coisa antes de ela começar a tentar matá-lo. */
+#bossintro{
+  display:flex; align-items:center; justify-content:center;
+  background:#050403;
+  animation:introEscurece .5s ease-out;
+}
+@keyframes introEscurece{ from{ background:rgba(5,4,3,0);} to{ background:#050403;} }
+
+#bossintro .intro-fundo{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 62%, rgba(196,50,42,.30), transparent 58%),
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.35) 3px 4px);
+  pointer-events:none;
+}
+
+.intro-card{
+  position:relative; text-align:center;
+  padding:0 24px; max-width:min(680px, 92vw);
+}
+.intro-sobre{
+  margin:0 0 14px; font-size:11px; letter-spacing:.42em;
+  text-transform:uppercase; color:#8A7A5C;
+  animation:introSobe .6s ease-out .1s both;
+}
+.intro-retrato{
+  display:flex; justify-content:center; margin-bottom:10px;
+  animation:introBicho .9s cubic-bezier(.16,.9,.3,1) .15s both;
+}
+.intro-retrato img{
+  height:min(38vh, 300px); width:auto;
+  image-rendering:pixelated;
+  filter:drop-shadow(0 0 34px rgba(196,50,42,.55)) drop-shadow(0 12px 0 rgba(0,0,0,.55));
+}
+.intro-card h2{
+  margin:0 0 8px;
+  font-family:Cinzel, serif; font-weight:900;
+  font-size:clamp(24px, 4.6vw, 42px); letter-spacing:.10em;
+  color:#F0DCB0;
+  text-shadow:0 3px 0 #14100A, 0 0 34px rgba(196,50,42,.7);
+  animation:introSobe .6s ease-out .55s both;
+}
+.intro-frase{
+  margin:0 0 16px; font-family:Cinzel, serif; font-style:italic;
+  font-size:clamp(12px, 1.7vw, 16px); color:#A89272;
+  animation:introSobe .6s ease-out .75s both;
+}
+.intro-tags{
+  display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+  margin-bottom:24px;
+  animation:introSobe .6s ease-out .9s both;
+}
+.intro-tags span{
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:#C0A870; border:1px solid #4A3A22; padding:4px 9px;
+  background:rgba(20,16,10,.7);
+}
+.intro-dica{
+  margin:0; font-size:11px; letter-spacing:.24em;
+  text-transform:uppercase; color:#6E6250;
+  animation:introPisca 1.6s ease-in-out 1.2s infinite both;
+}
+@keyframes introSobe{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:none;} }
+@keyframes introBicho{ from{opacity:0; transform:translateY(40px) scale(.86);} to{opacity:1; transform:none;} }
+@keyframes introPisca{ 0%,100%{opacity:.25;} 50%{opacity:1;} }
+
+@media (prefers-reduced-motion:reduce){
+  #bossintro, .intro-sobre, .intro-retrato, .intro-card h2,
+  .intro-frase, .intro-tags, .intro-dica{ animation:none; }
+}
+
+/* ---------- tela de vitória ---------- */
+#victory{
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(227,178,60,.20), transparent 62%),
+    rgba(6,5,4,.90);
+}
+
+.vit-card{
+  width:min(560px, 92vw);
+  padding:34px 36px 28px;
+  text-align:center;
+  background:
+    linear-gradient(180deg, rgba(90,74,42,.34), rgba(20,18,15,.62)),
+    var(--pedra);
+  border:2px solid #14120F;
+  box-shadow:
+    inset 0 0 0 1px rgba(227,178,60,.24),
+    inset 0 26px 50px rgba(0,0,0,.5),
+    0 20px 70px rgba(0,0,0,.8);
+}
+
+.vit-sobre{
+  margin:0 0 6px; font-size:11px; letter-spacing:.32em;
+  text-transform:uppercase; color:#9A8F7C;
+}
+.vit-card h2{
+  margin:0 0 4px;
+  font-family:Cinzel, serif; font-weight:900;
+  font-size:clamp(30px, 6vw, 48px);
+  letter-spacing:.14em;
+  color:var(--ouro);
+  text-shadow:0 3px 0 #1A1208, 0 0 40px rgba(227,178,60,.55);
+}
+.vit-morto{
+  margin:0 0 18px; font-family:Cinzel, serif; font-style:italic;
+  font-size:14px; color:#C0A870;
+}
+
+@media (prefers-reduced-motion:reduce){
+  #bosshp.enfurecido .boss-trilho{ animation:none; }
+  .boss-trilho .boss-atraso, .boss-trilho .boss-fill{ transition:none; }
+}

@@ -1,0 +1,54 @@
+{
+  "_comentario": "Armadilhas do andar. 'onde' decide o terreno: corredor = célula de passagem fora de sala (garganta, o jogador precisa cronometrar); sala = dentro de sala, onde sempre dá para contornar. As cíclicas (espinhos, jato) alternam dormente → aviso → ativa em laço, com fase própria, e ferem UMA vez por ativação. As contínuas (lodo) ferem por segundo enquanto o jogador estiver dentro. Nenhuma armadilha altera a grade, então a prova de conectividade do gerador continua valendo.",
+
+  "armadilhas": [
+    {
+      "id": "espinhos",
+      "nome": "Espinhos",
+      "aviso": "Espinhos!",
+      "modo": "ciclica",
+      "onde": "corredor",
+      "dano": 15,
+      "danoPorAndar": 1.6,
+      "ciclo": 2.7,
+      "tempoAviso": 0.6,
+      "tempoAtivo": 0.8,
+      "peso": 3.0,
+      "andarMin": 1
+    },
+    {
+      "id": "jato_fogo",
+      "nome": "Jato de fogo",
+      "aviso": "Fogo!",
+      "modo": "ciclica",
+      "onde": "corredor",
+      "dano": 22,
+      "danoPorAndar": 1.6,
+      "ciclo": 3.6,
+      "tempoAviso": 0.75,
+      "tempoAtivo": 1.0,
+      "peso": 2.0,
+      "andarMin": 5
+    },
+    {
+      "id": "lodo",
+      "nome": "Poça de lodo",
+      "aviso": "Lodo ácido",
+      "modo": "continua",
+      "onde": "sala",
+      "danoPorSegundo": 6,
+      "danoPorAndar": 0.5,
+      "intervaloDano": 0.7,
+      "lentidao": 0.45,
+      "raio": 2,
+      "peso": 2.0,
+      "andarMin": 3
+    }
+  ],
+
+  "densidade": {
+    "base": 2,
+    "porAndar": 0.75,
+    "teto": 11
+  }
+}

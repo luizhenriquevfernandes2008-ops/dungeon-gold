@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dungeon Gold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
+<!-- O ?v= existe porque o servidor local não manda cabeçalho de cache:
+     sem ele o navegador insiste no CSS antigo depois de uma atualização
+     e a tela aparece quebrada. Subir esse número força a releitura. -->
+<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/menu.css?v=6">
+<link rel="stylesheet" href="css/hud.css?v=6">
+<link rel="stylesheet" href="css/inventory.css?v=6">
+<link rel="stylesheet" href="css/shop.css?v=6">
+<link rel="stylesheet" href="css/boss.css?v=6">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- Canvas 3D principal (menu e jogo compartilham) -->
+<canvas id="view"></canvas>
+
+<!-- Tela de carregamento -->
+<div id="boot" class="overlay">
+  <div class="boot-inner">
+    <div class="boot-rune">✦</div>
+    <div class="boot-label">forjando a masmorra</div>
+    <div class="boot-bar"><i id="boot-fill"></i></div>
+    <div class="boot-hint" id="boot-hint">carregando dados</div>
+  </div>
+</div>
+
+<!-- MENU PRINCIPAL -->
+<div id="menu" class="overlay hidden">
+  <div class="menu-left">
+    <nav id="menu-root" class="plaques">
+      <button class="plaque" data-action="play"><span class="rune">❖</span>Descer</button>
+      <button class="plaque" data-action="settings"><span class="rune">❖</span>Ajustes</button>
+      <button class="plaque" data-action="credits"><span class="rune">❖</span>Créditos</button>
+      <button class="plaque" data-action="wipe"><span class="rune">❖</span>Apagar progresso</button>
+    </nav>
+    <div class="meta" id="menu-meta"></div>
+  </div>
+
+  <!-- AJUSTES -->
+  <section id="panel-settings" class="panel hidden">
+    <h2>Ajustes</h2>
+    <div class="panel-body">
+      <div class="group">
+        <h3>Som</h3>
+        <label class="row"><span>Volume geral</span><input type="range" id="s-master" min="0" max="100"><b class="val" id="v-master">0</b></label>
+        <label class="row"><span>Música</span><input type="range" id="s-music" min="0" max="100"><b class="val" id="v-music">0</b></label>
+        <label class="row"><span>Efeitos</span><input type="range" id="s-sfx" min="0" max="100"><b class="val" id="v-sfx">0</b></label>
+      </div>
+      <div class="group">
+        <h3>Imagem</h3>
+        <label class="row"><span>Resolução interna</span>
+          <select id="s-quality">
+            <option value="low">Grosseira (256px)</option>
+            <option value="med">Clássica (384px)</option>
+            <option value="high">Nítida (512px)</option>
+          </select>
+        </label>
+        <label class="row"><span>Brilho</span><input type="range" id="s-brilho" min="60" max="220"><b class="val" id="v-brilho">0</b></label>
+        <label class="row"><span>Pontilhado (dither)</span><input type="checkbox" id="s-dither"></label>
+        <label class="row"><span>Linhas de varredura</span><input type="checkbox" id="s-scan"></label>
+        <label class="row"><span>Tremulação das tochas</span><input type="checkbox" id="s-flicker"></label>
+        <label class="row"><span>Campo de visão</span><input type="range" id="s-fov" min="60" max="110"><b class="val" id="v-fov">0</b></label>
+      </div>
+      <div class="group">
+        <h3>Controle</h3>
+        <label class="row"><span>Sensibilidade do mouse</span><input type="range" id="s-sens" min="10" max="300"><b class="val" id="v-sens">0</b></label>
+        <label class="row"><span>Balanço da câmera</span><input type="checkbox" id="s-bob"></label>
+      </div>
+    </div>
+    <button class="plaque back" data-action="back">Voltar</button>
+  </section>
+
+  <!-- ESCOLHA DE ARMA -->
+  <section id="panel-armas" class="panel hidden">
+    <h2>Com o que você desce</h2>
+    <p class="panel-sub">Uma escolha por run. Não dá para trocar lá embaixo.</p>
+    <div class="armas" id="armas-lista"></div>
+    <div class="armas-rodape">
+      <button class="plaque back" data-action="back">Voltar</button>
+      <button class="plaque descer" id="btn-descer" disabled>Descer</button>
+    </div>
+  </section>
+
+  <!-- CRÉDITOS -->
+  <section id="panel-credits" class="panel hidden">
+    <h2>Créditos</h2>
+    <div class="panel-body credits">
+      <p class="c-role">Projeto</p><p class="c-name">Dungeon Gold</p>
+      <p class="c-role">Código, arte e som</p><p class="c-name">Feito à mão nesta sessão — nenhum asset externo. Todas as texturas, sprites, fontes e sons são gerados por código.</p>
+      <p class="c-role">Motor</p><p class="c-name">three.js (WebGL) com pipeline de baixa resolução e pontilhado ordenado</p>
+      <p class="c-role">Inspiração</p><p class="c-name">DOOM (id Software, 1993) — pela interface e pela cadência. Este projeto não usa nenhum arquivo original do jogo.</p>
+      <p class="c-role">Tipografia</p><p class="c-name">Cinzel (Google Fonts) nos menus · fonte de bitmap 5×7 própria na interface do jogo</p>
+    </div>
+    <button class="plaque back" data-action="back">Voltar</button>
+  </section>
+</div>
+
+<!-- INTERFACE DO JOGO -->
+<div id="hud" class="hidden">
+  <canvas id="hud-canvas" width="320" height="32"></canvas>
+</div>
+<div id="minimap-wrap" class="hidden"><canvas id="minimap"></canvas><span class="mm-andar" id="mm-andar"></span></div>
+<div id="crosshair" class="hidden">+</div>
+<div id="dash" class="hidden"></div>
+<div id="especial" class="hidden"><b id="esp-nome"></b><i id="esp-carga"></i></div>
+<div id="buffs" class="hidden"></div>
+<div id="toast" class="hidden"></div>
+
+<!-- BARRA DO CHEFE -->
+<div id="bosshp" class="hidden">
+  <div class="boss-nome" id="boss-nome"></div>
+  <div class="boss-trilho">
+    <i class="boss-atraso" id="boss-atraso"></i>
+    <i class="boss-fill" id="boss-fill"></i>
+  </div>
+  <div class="boss-fases" id="boss-fases"></div>
+</div>
+
+<!-- INVENTÁRIO -->
+<div id="inventory" class="overlay hidden">
+  <div class="inv-card">
+    <header class="inv-top">
+      <h2>Inventário</h2>
+      <div class="inv-vitals" id="inv-vitals"></div>
+    </header>
+    <div class="inv-main">
+      <div class="inv-grid" id="inv-grid"></div>
+      <aside class="inv-detail" id="inv-detail">
+        <p class="inv-vazio">Escolha um item para ver o que ele faz.</p>
+      </aside>
+    </div>
+    <footer class="inv-bottom">
+      <p class="tip">Tab ou Esc para voltar · o tempo está parado</p>
+    </footer>
+  </div>
+</div>
+
+<!-- LOJA -->
+<div id="shop" class="overlay hidden">
+  <div class="loja-card">
+    <header class="loja-top">
+      <h2>Mercador</h2>
+      <div class="loja-purse" id="shop-purse"></div>
+    </header>
+    <p class="loja-fala" id="shop-line"></p>
+    <div class="loja-grid" id="shop-grid"></div>
+    <footer class="loja-bottom">
+      <p class="tip">E ou Esc para sair · o ouro gasto aqui não vai para o cofre</p>
+    </footer>
+  </div>
+</div>
+
+<!-- PAUSA -->
+<div id="pause" class="overlay hidden">
+  <div class="mid-card">
+    <h2>Pausado</h2>
+    <button class="plaque" data-action="resume">Continuar</button>
+    <button class="plaque" data-action="tomenu">Abandonar a run</button>
+    <p class="tip">Clique na tela para voltar a mirar.</p>
+  </div>
+</div>
+
+<!-- FIM DE RUN -->
+<div id="gameover" class="overlay hidden">
+  <div class="mid-card">
+    <h2 id="go-title">Você tombou</h2>
+    <div id="go-stats" class="stats"></div>
+    <div id="go-unlocks" class="unlocks"></div>
+    <button class="plaque" data-action="again">Nova run</button>
+    <button class="plaque" data-action="tomenu">Menu</button>
+  </div>
+</div>
+
+<!-- APRESENTAÇÃO DO CHEFE -->
+<div id="bossintro" class="overlay hidden">
+  <div class="intro-fundo"></div>
+  <div class="intro-card">
+    <p class="intro-sobre">o último andar</p>
+    <div class="intro-retrato"><img id="intro-img" alt=""></div>
+    <h2 id="intro-nome"></h2>
+    <p class="intro-frase" id="intro-frase"></p>
+    <div class="intro-tags" id="intro-tags"></div>
+    <p class="intro-dica">clique ou aperte qualquer tecla</p>
+  </div>
+</div>
+
+<!-- VITÓRIA -->
+<div id="victory" class="overlay hidden">
+  <div class="vit-card">
+    <p class="vit-sobre">a masmorra acabou</p>
+    <h2>VOCÊ SAIU</h2>
+    <p class="vit-morto" id="vit-morto"></p>
+    <div id="vit-stats" class="stats"></div>
+    <div id="vit-unlocks" class="unlocks"></div>
+    <button class="plaque" data-action="again">Descer de novo</button>
+    <button class="plaque" data-action="tomenu">Menu</button>
+  </div>
+</div>
+
+<div id="click-to-play" class="hidden">clique para mirar</div>
+
+<script type="module" src="js/main.js?v=6"></script>
+</body>
+</html>

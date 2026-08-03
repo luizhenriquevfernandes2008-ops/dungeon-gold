@@ -1,0 +1,152 @@
+/* ==========================================================
+   DUNGEON GOLD — estilo base
+   Paleta:
+     --breu       #0B0908  escuridão da masmorra
+     --pedra      #2A2621  pedra fria
+     --pedra-alta #4A423A  pedra iluminada
+     --tocha      #E8873A  fogo
+     --ouro       #E3B23C  ouro velho (identidade)
+     --ouro-alto  #FFE28A  brilho do ouro
+     --sangue     #8E1B1B  sangue seco
+     --osso       #D8CBB0  osso / pergaminho
+   ========================================================== */
+:root{
+  --breu:#0B0908;
+  --pedra:#2A2621;
+  --pedra-alta:#4A423A;
+  --tocha:#E8873A;
+  --ouro:#E3B23C;
+  --ouro-alto:#FFE28A;
+  --sangue:#8E1B1B;
+  --osso:#D8CBB0;
+
+  --display:'Cinzel', 'Times New Roman', serif;
+  --util: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--breu);}
+body{
+  font-family:var(--util);
+  color:var(--osso);
+  -webkit-font-smoothing:none;
+  cursor:default;
+  user-select:none;
+}
+
+#view{
+  position:fixed; inset:0;
+  width:100%; height:100%;
+  display:block;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+  background:#000;
+}
+
+.overlay{
+  position:fixed; inset:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hidden{display:none !important;}
+
+/* ---------- carregamento ---------- */
+#boot{
+  background:radial-gradient(ellipse at 50% 55%, #191411 0%, #0B0908 70%);
+  flex-direction:column;
+  z-index:60;
+}
+.boot-inner{text-align:center;}
+.boot-rune{
+  font-size:42px; color:var(--ouro);
+  text-shadow:0 0 24px rgba(227,178,60,.55);
+  animation:spin 6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.boot-label{
+  font-family:var(--display); font-weight:700;
+  letter-spacing:.42em; text-transform:uppercase;
+  font-size:13px; color:var(--osso);
+  margin:18px 0 14px 6px; opacity:.8;
+}
+.boot-bar{
+  width:230px; height:3px; background:#221D19;
+  border:1px solid #3A322A; overflow:hidden;
+}
+.boot-bar i{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg,var(--sangue),var(--tocha),var(--ouro-alto));
+  transition:width .25s ease;
+}
+.boot-hint{
+  margin-top:12px; font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:#6B6055;
+}
+
+/* ---------- cartão central (pausa / fim) ---------- */
+#pause,#gameover{background:rgba(9,7,6,.86); backdrop-filter:blur(2px);}
+.mid-card{
+  text-align:center;
+  padding:38px 46px;
+  border:1px solid #3B322A;
+  background:linear-gradient(180deg,#1A1613,#100D0B);
+  box-shadow:0 0 0 1px #0A0807, 0 26px 60px rgba(0,0,0,.8);
+  min-width:340px;
+}
+.mid-card h2{
+  font-family:var(--display); font-weight:900;
+  text-transform:uppercase; letter-spacing:.3em;
+  font-size:22px; color:var(--ouro);
+  margin-bottom:22px;
+  text-shadow:0 2px 0 #000, 0 0 26px rgba(227,178,60,.28);
+}
+.mid-card .plaque{margin:6px auto;}
+.mid-card .tip{margin-top:16px;font-size:10px;color:#6B6055;letter-spacing:.14em;text-transform:uppercase;}
+.stats{
+  display:grid; grid-template-columns:auto auto; gap:6px 26px;
+  font-size:12px; margin-bottom:20px; text-align:left;
+}
+.stats span{color:#8A7C6B;text-transform:uppercase;letter-spacing:.14em;font-size:10px;}
+.stats b{color:var(--osso);font-weight:400;text-align:right;}
+.unlocks{
+  border-top:1px solid #332C25; padding-top:14px; margin-bottom:18px;
+  font-size:11px; color:var(--ouro-alto); line-height:1.9;
+}
+.unlocks:empty{display:none;}
+
+/* ---------- avisos no jogo ---------- */
+#toast{
+  position:fixed; left:50%; bottom:124px; transform:translateX(-50%);
+  z-index:30; pointer-events:none;
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ouro-alto);
+  background:rgba(11,9,8,.82);
+  border:1px solid #4A3E2C;
+  padding:8px 16px;
+  text-shadow:0 1px 0 #000;
+  animation:toastIn .18s ease-out;
+}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+
+#crosshair{
+  position:fixed; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  z-index:25; pointer-events:none;
+  color:rgba(227,178,60,.5); font-size:16px; line-height:1;
+  text-shadow:0 0 6px rgba(0,0,0,.9);
+}
+
+#click-to-play{
+  position:fixed; left:50%; top:56%; transform:translateX(-50%);
+  z-index:30; pointer-events:none;
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--osso); opacity:.7;
+  animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.8}}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important;}
+}

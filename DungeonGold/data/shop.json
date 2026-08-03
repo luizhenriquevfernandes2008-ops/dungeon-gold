@@ -1,0 +1,49 @@
+{
+  "_comentario": "Mercador entre andares. O ouro gasto aqui NÃO chega ao cofre no fim da run — é essa a decisão: levar o ouro para casa e ficar mais forte na próxima run, ou queimar agora para sobreviver a esta. Preços sobem com a profundidade porque o ouro por abate também sobe; sem isso a loja do andar 12 seria de graça.",
+
+  "cadaAndares": 3,
+  "andarMin": 3,
+  "vagas": 4,
+
+  "precoPorRaridade": {
+    "comum": 55,
+    "raro": 120,
+    "epico": 230,
+    "lendario": 420
+  },
+
+  "precoPorAndar": 0.14,
+
+  "servicos": [
+    {
+      "id": "curar",
+      "nome": "Emplastro do mercador",
+      "descricao": "Restaura 45 de vida na hora. Ele não pergunta de onde veio o sangue.",
+      "preco": 70,
+      "sprite": "pocao",
+      "raridade": "comum",
+      "efeito": { "tipo": "cura", "valor": 45 },
+      "repetivel": true
+    },
+    {
+      "id": "pocao",
+      "nome": "Poção para a mochila",
+      "descricao": "Uma poção guardada para usar quando quiser, com a tecla Q.",
+      "preco": 45,
+      "sprite": "pocao",
+      "raridade": "comum",
+      "efeito": { "tipo": "pocao", "valor": 1 },
+      "repetivel": true
+    },
+    {
+      "id": "reforco",
+      "nome": "Rebite na armadura",
+      "descricao": "+8% de armadura pelo resto da run.",
+      "preco": 130,
+      "sprite": "escudo",
+      "raridade": "raro",
+      "efeito": { "tipo": "armadura", "valor": 0.08 },
+      "repetivel": true
+    }
+  ]
+}

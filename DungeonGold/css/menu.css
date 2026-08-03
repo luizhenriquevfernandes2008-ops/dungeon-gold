@@ -1,0 +1,273 @@
+/* ==========================================================
+   MENU — placas de pedra entalhadas na parede esquerda.
+   O terço direito fica livre de propósito: é onde o título
+   em voxels de ouro e as tochas 3D respiram.
+   ========================================================== */
+
+#menu{
+  display:block;
+  background:
+    linear-gradient(90deg, rgba(6,5,4,.92) 0%, rgba(6,5,4,.72) 30%, rgba(6,5,4,0) 58%);
+  z-index:30;
+}
+
+.menu-left{
+  position:absolute;
+  left:clamp(28px, 6vw, 96px);
+  top:50%;
+  transform:translateY(-50%);
+  width:min(360px, 42vw);
+}
+
+.plaques{display:flex; flex-direction:column; gap:10px;}
+
+.plaque{
+  position:relative;
+  display:flex; align-items:center; gap:14px;
+  width:100%;
+  padding:14px 18px;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:#9B8E7C;
+  text-align:left;
+  cursor:pointer;
+  background:linear-gradient(180deg,#2E2822 0%, #211C18 60%, #191410 100%);
+  border:1px solid #100D0B;
+  border-top-color:#463D34;
+  border-left-color:#3A322B;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 3px 0 #0A0807, 0 10px 22px rgba(0,0,0,.55);
+  transition:color .16s, transform .16s, box-shadow .16s, background .16s;
+}
+.plaque .rune{
+  font-size:11px; color:#4A4038;
+  transition:color .16s, transform .3s;
+}
+.plaque:hover, .plaque:focus-visible, .plaque.sel{
+  color:var(--ouro-alto);
+  background:linear-gradient(180deg,#3A3128 0%, #2A231C 60%, #1F1913 100%);
+  transform:translateX(9px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,226,138,.14),
+    -3px 0 0 var(--ouro),
+    0 3px 0 #0A0807,
+    0 14px 34px rgba(232,135,58,.16);
+  outline:none;
+}
+.plaque:hover .rune, .plaque.sel .rune{
+  color:var(--tocha);
+  transform:rotate(45deg);
+}
+.plaque:active{transform:translateX(9px) translateY(2px); box-shadow:inset 0 1px 0 rgba(255,226,138,.14), -3px 0 0 var(--ouro), 0 1px 0 #0A0807;}
+
+.meta{
+  margin-top:26px;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#5E5449;
+  line-height:2.1;
+  border-top:1px solid #241E19;
+  padding-top:16px;
+}
+.meta b{color:var(--ouro);font-weight:400;}
+
+/* ---------- painéis (ajustes / créditos) ---------- */
+.panel{
+  position:absolute;
+  right:clamp(28px, 6vw, 90px);
+  top:50%;
+  transform:translateY(-50%);
+  width:min(520px, 46vw);
+  max-height:82vh;
+  display:flex; flex-direction:column;
+  padding:30px 32px 24px;
+  background:linear-gradient(180deg, rgba(26,22,19,.97), rgba(14,11,9,.97));
+  border:1px solid #3B322A;
+  box-shadow:0 0 0 1px #0A0807, 0 30px 70px rgba(0,0,0,.75);
+  animation:panelIn .22s ease-out;
+}
+@keyframes panelIn{from{opacity:0;transform:translate(14px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+
+.panel h2{
+  font-family:var(--display); font-weight:900;
+  font-size:17px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--ouro); margin-bottom:20px;
+  padding-bottom:12px; border-bottom:1px solid #332C25;
+}
+.panel-body{overflow-y:auto; padding-right:8px; flex:1;}
+.panel-body::-webkit-scrollbar{width:6px}
+.panel-body::-webkit-scrollbar-thumb{background:#3B322A}
+
+.group{margin-bottom:22px;}
+.group h3{
+  font-size:9px; letter-spacing:.3em; text-transform:uppercase;
+  color:#6B6055; margin-bottom:10px; font-weight:400;
+}
+.row{
+  display:flex; align-items:center; gap:14px;
+  padding:8px 0; font-size:12px; color:#B6A894;
+  cursor:pointer;
+}
+.row span{flex:1;}
+.row .val{
+  width:38px; text-align:right; color:var(--ouro);
+  font-weight:400; font-size:11px;
+}
+
+input[type=range]{
+  -webkit-appearance:none; appearance:none;
+  width:150px; height:2px; background:#3B322A; outline:none; cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:9px; height:16px; background:var(--ouro);
+  border:1px solid #0A0807; cursor:pointer;
+  box-shadow:0 0 10px rgba(227,178,60,.4);
+}
+input[type=range]::-moz-range-thumb{
+  width:9px; height:16px; background:var(--ouro);
+  border:1px solid #0A0807; border-radius:0; cursor:pointer;
+}
+input[type=checkbox]{
+  -webkit-appearance:none; appearance:none;
+  width:15px; height:15px; background:#191512;
+  border:1px solid #4A423A; cursor:pointer; position:relative;
+}
+input[type=checkbox]:checked{background:#191512; border-color:var(--ouro);}
+input[type=checkbox]:checked::after{
+  content:'✕'; position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ouro); font-size:11px; line-height:1;
+}
+select{
+  background:#191512; color:#B6A894;
+  border:1px solid #4A423A; padding:5px 8px;
+  font-family:var(--util); font-size:11px; cursor:pointer;
+}
+select:focus, input:focus-visible{outline:1px solid var(--ouro); outline-offset:2px;}
+
+.plaque.back{margin-top:16px; justify-content:center; font-size:13px;}
+
+.credits{line-height:1.7;}
+.credits .c-role{
+  font-size:9px; letter-spacing:.3em; text-transform:uppercase;
+  color:#6B6055; margin-top:16px;
+}
+.credits .c-role:first-child{margin-top:0;}
+.credits .c-name{font-size:12px; color:#B6A894; margin-top:4px;}
+
+@media (max-width:820px){
+  .menu-left{left:20px; width:60vw;}
+  .panel{right:12px; left:12px; width:auto; top:auto; bottom:12px; transform:none; max-height:64vh;}
+  @keyframes panelIn{from{opacity:0}to{opacity:1}}
+}
+
+/* ============================================================
+   Escolha de arma.
+
+   Racks numa parede de armeiro. A arma escolhida acende como se
+   alguém tivesse aproximado a tocha; a bloqueada fica atrás de uma
+   grade fria, com a condição gravada embaixo — você vê o que está
+   perdendo, e por quê.
+
+   A LISTA é quem rola, nunca o painel. O rodapé com o botão "Descer"
+   fica preso no fim do painel: se ele rolasse junto com as armas,
+   bastaria entrar mais uma arma no jogo para o botão sair da tela —
+   foi exatamente o que aconteceu quando o arsenal passou de 3 para 6.
+   ============================================================ */
+
+#panel-armas .panel-sub{
+  margin:-4px 0 14px; font-size:12px; letter-spacing:.10em;
+  text-transform:uppercase; color:#7E7466;
+}
+
+.armas{
+  display:grid; gap:10px;
+  /* flex:1 + min-height:0 é o par que faz a lista encolher dentro do
+     painel; sem o min-height ela se recusa a ficar menor que o
+     conteúdo e empurra o rodapé para fora */
+  flex:1; min-height:0; overflow-y:auto;
+  padding-right:8px;
+}
+.armas::-webkit-scrollbar{width:6px}
+.armas::-webkit-scrollbar-thumb{background:#3B322A}
+
+.arma{
+  position:relative; display:grid;
+  grid-template-columns:74px 1fr; gap:14px; align-items:center;
+  padding:12px 14px;
+  background:linear-gradient(90deg, rgba(74,66,58,.26), rgba(20,18,15,.34));
+  border:1px solid #14120F;
+  box-shadow:inset 0 0 0 1px rgba(216,203,176,.07);
+  cursor:pointer; text-align:left;
+  color:inherit; font:inherit;
+}
+.arma:hover:not(.travada){ background:linear-gradient(90deg, rgba(96,86,72,.34), rgba(28,25,20,.4)); }
+.arma:focus-visible{ outline:2px solid var(--ouro); outline-offset:2px; }
+
+.arma.escolhida{
+  border-color:var(--ouro);
+  box-shadow:inset 0 0 0 1px rgba(227,178,60,.35), 0 0 26px -8px var(--ouro);
+  background:linear-gradient(90deg, rgba(227,178,60,.16), rgba(28,25,20,.42));
+}
+
+.arma .retrato{
+  width:74px; height:56px;
+  display:flex; align-items:center; justify-content:center;
+  background:#151310; border:1px solid #0C0A08;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.7);
+  overflow:hidden;
+}
+.arma .retrato img{
+  max-width:100%; max-height:100%;
+  image-rendering:pixelated;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.55));
+}
+
+.arma h3{
+  margin:0 0 2px; font-family:Cinzel, serif; font-size:16px; font-weight:700;
+  letter-spacing:.04em; color:var(--osso);
+}
+.arma .lema{
+  margin:0 0 5px; font-size:11px; letter-spacing:.10em;
+  text-transform:uppercase; color:var(--ouro);
+}
+.arma p.desc{ margin:0; font-size:12px; line-height:1.45; color:#9A8F7C; }
+
+.arma .fichas{
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:7px;
+}
+.arma .ficha{
+  font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  padding:2px 7px; color:#B8AC96;
+  background:rgba(216,203,176,.07);
+  border:1px solid rgba(216,203,176,.14);
+}
+
+/* bloqueada */
+.arma.travada{ cursor:not-allowed; filter:saturate(.25) brightness(.62); }
+.arma.travada .retrato img{ filter:brightness(.35) contrast(.7); }
+.arma.travada .lema{ color:#6E6659; }
+.arma .cadeado{
+  margin-top:7px; font-size:11px; letter-spacing:.08em;
+  color:#8E7A4A;
+}
+.arma .cadeado b{ color:var(--ouro); font-weight:700; }
+
+/* grade sobre a arma bloqueada */
+.arma.travada::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(
+    -45deg, transparent 0 9px, rgba(10,8,6,.42) 9px 11px);
+}
+
+.armas-rodape{
+  display:flex; gap:10px; justify-content:space-between;
+  margin-top:16px; padding-top:14px;
+  border-top:1px solid #332C25;
+  flex-shrink:0;               /* nunca some, por mais armas que existam */
+}
+.plaque.descer:disabled{ opacity:.4; cursor:not-allowed; }

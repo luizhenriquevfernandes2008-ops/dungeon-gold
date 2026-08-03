@@ -1,0 +1,17 @@
+# Claude Code (configuração local da máquina)
+.claude/settings.local.json
+
+# Builds / pacotes gerados
+*.zip
+
+# Arquivos soltos não relacionados ao jogo
+moujaro_natural_guia.pdf
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Python (servidor.py)
+__pycache__/
+*.pyc

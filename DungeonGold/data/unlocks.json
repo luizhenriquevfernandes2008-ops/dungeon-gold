@@ -1,0 +1,125 @@
+{
+  "_comentario": "Cada desbloqueio libera um item no sorteio das runs seguintes. condicao.tipo: andar | abates | ouroTotal | runs | chefes",
+  "desbloqueios": [
+    {
+      "id": "u_punho",
+      "item": "punho_rapido",
+      "nome": "Punho Rápido",
+      "descricao": "Sobreviva até o andar 3.",
+      "condicao": {
+        "tipo": "andar",
+        "valor": 3
+      }
+    },
+    {
+      "id": "u_lamina",
+      "item": "lamina_longa",
+      "nome": "Lâmina Longa",
+      "descricao": "Abata 40 criaturas ao todo.",
+      "condicao": {
+        "tipo": "abates",
+        "valor": 40
+      }
+    },
+    {
+      "id": "u_sangue",
+      "item": "sanguessuga",
+      "nome": "Anel Sanguessuga",
+      "descricao": "Junte 300 de ouro ao todo.",
+      "condicao": {
+        "tipo": "ouroTotal",
+        "valor": 300
+      }
+    },
+    {
+      "id": "u_falcao",
+      "item": "olho_falcao",
+      "nome": "Olho de Falcão",
+      "descricao": "Termine 3 runs.",
+      "condicao": {
+        "tipo": "runs",
+        "valor": 3
+      }
+    },
+    {
+      "id": "u_elmo",
+      "item": "elmo_martir",
+      "nome": "Elmo do Mártir",
+      "descricao": "Sobreviva até o andar 6.",
+      "condicao": {
+        "tipo": "andar",
+        "valor": 6
+      }
+    },
+    {
+      "id": "u_chama",
+      "item": "chama_eterna",
+      "nome": "Chama Eterna",
+      "descricao": "Abata 150 criaturas ao todo.",
+      "condicao": {
+        "tipo": "abates",
+        "valor": 150
+      }
+    },
+    {
+      "id": "u_coroa",
+      "item": "coroa_gold",
+      "nome": "Coroa de Dungeon Gold",
+      "descricao": "Derrote 1 guardião.",
+      "condicao": {
+        "tipo": "chefes",
+        "valor": 1
+      }
+    },
+    {
+      "id": "u_espelho",
+      "item": "espelho_negro",
+      "nome": "Espelho Negro",
+      "descricao": "Sobreviva até o andar 10.",
+      "condicao": {
+        "tipo": "andar",
+        "valor": 10
+      }
+    },
+    {
+      "id": "arma_zweihander",
+      "arma": "zweihander",
+      "nome": "Zweihänder",
+      "descricao": "Derrote 2 chefes ao todo.",
+      "condicao": {
+        "tipo": "chefes",
+        "valor": 2
+      }
+    },
+    {
+      "id": "arma_lanca",
+      "arma": "lanca",
+      "nome": "Lança de Guarda",
+      "descricao": "Termine 2 runs.",
+      "condicao": {
+        "tipo": "runs",
+        "valor": 2
+      }
+    },
+    {
+      "id": "arma_arco",
+      "arma": "arco",
+      "nome": "Arco Longo",
+      "descricao": "Abata 90 criaturas ao todo.",
+      "condicao": {
+        "tipo": "abates",
+        "valor": 90
+      }
+    },
+    {
+      "id": "arma_martelo",
+      "arma": "martelo",
+      "nome": "Martelo de Guerra",
+      "descricao": "Sobreviva até o andar 8.",
+      "condicao": {
+        "tipo": "andar",
+        "valor": 8
+      }
+    }
+  ]
+}

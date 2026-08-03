@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dungeon-gold",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:\\Users\\Vargas\\AppData\\Local\\Temp\\claude\\C--Users-Vargas-Downloads-jogo-claude\\0f450914-da5e-4510-a57b-1a38c042a929\\scratchpad\\servidor_dev.py",
+        "8123",
+        "DungeonGold"
+      ],
+      "port": 8123
+    }
+  ]
+}

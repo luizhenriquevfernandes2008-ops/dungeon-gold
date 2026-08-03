@@ -1,0 +1,125 @@
+/* ============================================================
+   Loja do mercador.
+
+   Ideia: uma banca armada às pressas num corredor, não uma loja.
+   Fundo mais quente que o do inventário — a única luz amigável da
+   masmorra — e cada oferta é uma linha de tabuleta com o preço
+   gravado à direita, como quem risca a giz. Item fora do alcance
+   não some da prateleira: fica cinza, para o jogador saber quanto
+   falta juntar.
+   ============================================================ */
+
+#shop{
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(227,178,60,.14), transparent 60%),
+    rgba(6,5,4,.88);
+}
+
+.loja-card{
+  width:min(680px, 93vw);
+  max-height:88vh;
+  display:flex; flex-direction:column;
+  background:
+    linear-gradient(180deg, rgba(90,74,58,.34), rgba(20,18,15,.58)),
+    var(--pedra);
+  border:2px solid #14120F;
+  box-shadow:
+    inset 0 0 0 1px rgba(227,178,60,.14),
+    inset 0 22px 44px rgba(0,0,0,.55),
+    0 18px 60px rgba(0,0,0,.72);
+}
+
+/* ---------- topo ---------- */
+.loja-top{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:18px; padding:16px 20px 12px;
+  border-bottom:1px solid rgba(227,178,60,.20);
+}
+.loja-top h2{
+  margin:0; font-family:Cinzel, serif; font-weight:900;
+  font-size:24px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ouro);
+  text-shadow:0 2px 0 #1A1208, 0 0 18px rgba(227,178,60,.34);
+}
+.loja-purse{
+  display:flex; gap:16px; font-size:12px; letter-spacing:.10em;
+  text-transform:uppercase; color:#9A8F7C;
+}
+.loja-purse b{ color:var(--ouro-alto); font-weight:700; }
+
+/* ---------- fala do mercador ---------- */
+.loja-fala{
+  margin:0; padding:11px 20px;
+  font-family:Cinzel, serif; font-style:italic;
+  font-size:13px; line-height:1.45; color:#B9A886;
+  border-bottom:1px solid rgba(216,203,176,.10);
+  background:linear-gradient(180deg, rgba(227,178,60,.06), transparent);
+}
+
+/* ---------- prateleira ---------- */
+.loja-grid{
+  display:flex; flex-direction:column; gap:8px;
+  padding:16px 20px; overflow-y:auto; min-height:0;
+}
+
+.loja-item{
+  display:grid; grid-template-columns:34px 1fr auto;
+  align-items:center; gap:13px;
+  width:100%; text-align:left;
+  padding:10px 13px;
+  background:#191713;
+  border:1px solid #0E0C0A;
+  border-left:3px solid var(--rar, #B6A894);
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.7);
+  color:inherit; font-family:inherit; cursor:pointer;
+}
+.loja-item:hover:not(.esgotado){
+  background:#241F18;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.5), 0 0 0 1px var(--rar, var(--ouro));
+}
+.loja-item:focus-visible{ outline:2px solid var(--ouro); outline-offset:2px; }
+
+.loja-item .marca{
+  width:28px; height:28px;
+  image-rendering:pixelated;
+  filter:drop-shadow(0 2px 0 rgba(0,0,0,.6));
+}
+.loja-item .corpo{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+.loja-item .nome{
+  font-family:Cinzel, serif; font-size:14px; font-weight:700;
+  letter-spacing:.04em; color:var(--osso);
+}
+.loja-item .desc{ font-size:11.5px; line-height:1.4; color:#9A8F7C; }
+
+.loja-item .preco{
+  font-size:13px; font-weight:700; letter-spacing:.08em;
+  color:var(--ouro-alto); white-space:nowrap;
+  text-shadow:0 1px 0 #1A1208;
+}
+
+/* fora do alcance: continua na prateleira, mas apagado */
+.loja-item.esgotado{
+  cursor:default; opacity:.44;
+  border-left-color:#4A443E;
+  background:#131110;
+}
+.loja-item.esgotado .preco{
+  color:#7E7466; font-weight:400; font-size:11px;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+
+/* ---------- rodapé ---------- */
+.loja-bottom{
+  padding:10px 20px 14px;
+  border-top:1px solid rgba(216,203,176,.14);
+}
+.loja-bottom .tip{
+  margin:0; font-size:11px; letter-spacing:.10em;
+  text-transform:uppercase; color:#6E6659; text-align:center;
+}
+
+@media (max-width:640px){
+  .loja-item{ grid-template-columns:28px 1fr; row-gap:6px; }
+  .loja-item .preco{ grid-column:2; }
+}

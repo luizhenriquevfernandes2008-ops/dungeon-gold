@@ -1,0 +1,106 @@
+DUNGEON GOLD
+============
+
+COMO JOGAR
+----------
+Windows ....... clique duas vezes em  ABRIR_JOGO.bat
+macOS/Linux ... no terminal:  bash abrir_jogo.sh
+
+O navegador abre sozinho em http://localhost:8123/index.html
+Deixe a janela preta/terminal aberta enquanto joga.
+
+Se o jogo parecer a versao antiga depois de uma atualizacao, aperte
+Ctrl+F5 (recarga forcada). O navegador guarda os arquivos em cache e
+as vezes insiste na copia velha.
+
+Por que precisa disso, e nao dar dois cliques no index.html?
+O jogo usa modulos JavaScript (import/export) e carrega os dados
+de arquivos .json. Todo navegador bloqueia as duas coisas quando a
+pagina e aberta como arquivo solto (file://). O servidor local
+resolve — e roda 100% offline, nada sai do seu computador.
+
+CONTROLES
+---------
+W A S D ......... andar
+Mouse ........... olhar
+Clique esq. ..... atacar (golpe ou tiro, conforme a arma)
+Clique dir. ..... defender / aparar
+Shift ........... correr
+Shift ........... DASH (3 cargas, voltam sozinhas)
+                  Durante o dash voce e INTANGIVEL: golpe, projetil,
+                  espinho e fogo passam direto. Leu o ataque e apertou
+                  no tempo certo? Voce atravessa.
+Ctrl ou C ....... SLIDE (segure andando)
+F ............... habilidade especial, se voce achou uma
+Q ............... beber pocao
+Tab ............. inventario (pausa o jogo)
+E ............... negociar com o mercador (andares 3, 6 e 9)
+Esc ............. pausar
+
+Itens sao pegos andando por cima deles, nao precisa apertar nada.
+
+O QUE VOCE ACHA NO CHAO
+-----------------------
+Reliquias ..... bonus permanentes da run. ~3,6 por andar.
+Frutas ........ bonus FORTE e temporario (20 a 30 s). Dano em dobro,
+                +70% de velocidade, +3,5 de alcance... ~1,7 por andar.
+                O tempo restante aparece no canto direito.
+Especiais ..... dao uma habilidade na tecla F, com recarga:
+                bola de fogo (atravessa a fila inteira)
+                estilhacos (leque curto e forte)
+                repulsa (fere e atordoa em volta)
+                piscar (atravessa para frente queimando o caminho)
+                drenar (crava no mais proximo e rouba a vida)
+                tempestade (castiga a sala por 3 segundos)
+                Pegar um especial novo SUBSTITUI o anterior.
+
+A RUN
+-----
+10 andares. Cada andar troca de cenario, e a ORDEM dos cenarios muda
+a cada run — nao da para decorar.
+
+Andar 5 ....... um guardiao no caminho
+Andares 3/6/9 . o mercador
+Andar 10 ...... o fim. Nao ha escada: a saida e matar o que esta la.
+                Ele e montado peca por peca na hora, com nome e
+                trilha propria. Voce nunca lutou contra ele antes,
+                e nao vai lutar de novo.
+
+O QUE PRESTAR ATENCAO
+---------------------
+Placa de metal no chao ..... espinhos. Ela estala antes de disparar:
+                             de o passo entre um disparo e outro.
+Grelha com brasa ........... jato de fogo, do andar 5 em diante.
+                             Chia antes de acender.
+Poca verde ................. lodo acido: tira vida por segundo e
+                             deixa voce lento. Da para contornar.
+Sala grande e silenciosa ... emboscada. Numa masmorra onde toda sala
+                             tem gente, a sala vazia e o aviso.
+Anel girando no ar ......... PORTAL. Aperte E para atravessar. Leva
+                             para fora da masmorra e NAO gasta andar:
+                             voce nao perde progresso indo, so arrisca.
+                             Azul = Superficie (ceu aberto, enorme).
+                             Laranja = Escadaria para o Inferno
+                             (apertada, teto altissimo, lotada).
+                             Nos dois ha ~2x mais item e ~2x mais bicho.
+Arma num pedestal .......... 5 armas so aparecem no chao, nunca no
+                             menu: foice, adagas gemeas, besta,
+                             chicote de ferro e canhao de mao.
+                             Pegar TROCA a sua — a antiga some.
+Luz dourada com um vulto ... o mercador, nos andares 3, 6, 9, 12...
+                             O ouro gasto com ele NAO vai para o cofre
+                             no fim da run. Gastar agora ou guardar
+                             para a proxima e a escolha.
+
+PASTAS
+------
+index.html ...... ponto de entrada
+js/ ............. codigo do jogo
+data/ ........... balanceamento, inimigos, itens, armas, armadilhas,
+                  loja e desbloqueios (mexa a vontade)
+css/ ............ estilos de menu e interface
+vendor/ ......... three.js (MIT, licenca em vendor/THREE_LICENSE.txt)
+DUNGEON_GOLD.md . documento mestre do projeto
+
+Nao ha pasta de imagens ou audio: todas as texturas, sprites, a fonte
+da interface e os sons sao gerados por codigo em tempo de execucao.
