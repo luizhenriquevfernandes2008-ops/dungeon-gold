@@ -43,11 +43,9 @@ js/               código do jogo (core, entities, world, combat, gfx, ui)
 data/             balanceamento, inimigos, itens, armas, armadilhas, loja
 css/              estilos de menu e interface
 vendor/           three.js (MIT — licença em vendor/THREE_LICENSE.txt)
-DUNGEON_GOLD.md   documento mestre do projeto
 ```
 
-O guia completo de mecânicas está em [DungeonGold/LEIA-ME.txt](DungeonGold/LEIA-ME.txt)
-e o documento de design em [DUNGEON_GOLD.md](DUNGEON_GOLD.md).
+O guia completo de mecânicas está em [DungeonGold/LEIA-ME.txt](DungeonGold/LEIA-ME.txt).
 
 ## Requisitos
 

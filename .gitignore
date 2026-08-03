@@ -7,6 +7,10 @@
 # Arquivos soltos não relacionados ao jogo
 moujaro_natural_guia.pdf
 
+# Documento mestre de design — privado, nunca versionar
+DUNGEON_GOLD.md
+DungeonGold/DUNGEON_GOLD.md
+
 # Sistema
 Thumbs.db
 desktop.ini

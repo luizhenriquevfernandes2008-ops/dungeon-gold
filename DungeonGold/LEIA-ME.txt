@@ -100,7 +100,6 @@ data/ ........... balanceamento, inimigos, itens, armas, armadilhas,
                   loja e desbloqueios (mexa a vontade)
 css/ ............ estilos de menu e interface
 vendor/ ......... three.js (MIT, licenca em vendor/THREE_LICENSE.txt)
-DUNGEON_GOLD.md . documento mestre do projeto
 
 Nao ha pasta de imagens ou audio: todas as texturas, sprites, a fonte
 da interface e os sons sao gerados por codigo em tempo de execucao.
